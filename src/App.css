@@ -1,9 +1,9 @@
-.App{
+.App {
   background-image: url('./fondo01.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .App-logo {
@@ -18,33 +18,26 @@
 }
 
 .App-header {
-  background-image: radial-gradient(circle at 0 0, 
-  #b4040d9b,
-  #a703219b,
-  #a303289b,
-  #a4043c9b,
-  #a204759b,
-  #a004839b,
-  #9d04989b,
-  #8404989b,
-  #6805939b,
-  #44058d9b,
-  #2704879b,
-  #052c819b,
-  #054d7a9b
-);
-    /* Puedes ajustar los colores y sus posiciones según tus preferencias */
-    background-repeat: no-repeat;
-    background-size: cover;
-  min-height: 100vh;
-  display: flex;
+  background-image: radial-gradient(circle at 0 0,
+      #b4040d9b,
+      #a703219b,
+      #a303289b,
+      #a4043c9b,
+      #a204759b,
+      #a004839b,
+      #9d04989b,
+      #8404989b,
+      #6805939b,
+      #44058d9b,
+      #2704879b,
+      #052c819b,
+      #054d7a9b);
+  /* Puedes ajustar los colores y sus posiciones según tus preferencias */
+  background-repeat: no-repeat;
+  background-size: cover;
   margin-left: 3%;
   margin-right: 3%;
-  flex-direction: column;
-  /*align-items: center;*/
-  /*justify-content: center;*/
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding-top: 3%;
 }
 
 .App-link {
@@ -55,6 +48,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

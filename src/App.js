@@ -2,13 +2,14 @@
 import './App.css';
 import Saludo from './components/Saludo';
 import Navegacion from './components/Navegacion';
+import ListaAutos from './components/ListaAutos';
 
 function App() {
   return (
     <div className="App">
-      <Navegacion/>
+      <Navegacion />
       <header className="App-header">
-      <Saludo/>
+        <ListaAutos />
       </header>
     </div>
   );
