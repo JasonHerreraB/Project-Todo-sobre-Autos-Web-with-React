@@ -20,7 +20,12 @@ function App() {
         setListadeAutosfavoritos(tempListAutos);
       }
     }
+  }
 
+  function delcartofav(Element){
+    let tempListAutos = [...ListadeAutosfavoritos];
+    tempListAutos = tempListAutos.filter((obj) => obj.Id !== Element.Id);
+    setListadeAutosfavoritos(tempListAutos);
   }
 
   const [ListadeAutos, setListaAutos] = useState(dataAutos);
@@ -39,6 +44,7 @@ function App() {
           <div className="col-md-4">
             <ListFavoritos
               Elementos={ListadeAutosfavoritos}
+              deltofav={delcartofav}
             />
           </div>
         </div>

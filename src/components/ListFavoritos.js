@@ -3,7 +3,7 @@ import Favorito from "./Favoritos";
 function ListFavoritos(props) {
 
     let listaFavoritosRendered = props.Elementos.map(Elements => {
-        return <Favorito value={Elements} />
+        return <Favorito value={Elements} deltofav={props.deltofav} />
     })
 
     return (
