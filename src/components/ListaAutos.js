@@ -1,16 +1,14 @@
 import dataAutos from "../data/autos";
 import Autos_card from "./Autos";
 
-function ListaAutos() {
+function ListaAutos(props) {
 
-    let lstAutos = dataAutos.map(
+    let lstAutos = props.Elementos.map(
         Element => {
             return <Autos_card 
-                Name={Element.Name}
-                Description={Element.Description}
-                Year={Element.Year}
-                Origin={Element.Origin}
-                Poster={Element.Poster}
+                key = {Element.Id}
+                value = {Element}
+                cartofav = {props.cartofav}
             />
         }
     );
