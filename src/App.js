@@ -10,15 +10,19 @@ import CreateAutos from './components/FormAutos';
 
 function App() {
 
+
+
   function addcartofav(Elementos) {
     let tempListAutos = [...ListadeAutosfavoritos];
     if (tempListAutos.length === 0) {
       tempListAutos.push(Elementos);
-      setListadeAutosfavoritos(tempListAutos);
+      localStorage.setItem('cartofav', JSON.stringify(tempListAutos));
+      setListadeAutosfavoritos(JSON.parse(localStorage.getItem('cartofav')));
     } else {
       if (!tempListAutos.some((obj) => obj.Id === Elementos.Id)) {
         tempListAutos.push(Elementos);
-        setListadeAutosfavoritos(tempListAutos);
+        localStorage.setItem('cartofav', JSON.stringify(tempListAutos));
+        setListadeAutosfavoritos(JSON.parse(localStorage.getItem('cartofav')));
       }
     }
   }
@@ -26,17 +30,30 @@ function App() {
   function delcartofav(Element) {
     let tempListAutos = [...ListadeAutosfavoritos];
     tempListAutos = tempListAutos.filter((obj) => obj.Id !== Element.Id);
-    setListadeAutosfavoritos(tempListAutos);
+    localStorage.setItem('cartofav', JSON.stringify(tempListAutos));
+    setListadeAutosfavoritos(JSON.parse(localStorage.getItem('cartofav')));
   }
 
   function addnewcar(Elemento) {
     let tempListAutos = [...ListadeAutos];
     tempListAutos.push(Elemento);
-    setListaAutos(tempListAutos);
+    localStorage.setItem('listaAutos', JSON.stringify(tempListAutos));
   }
 
-  const [ListadeAutos, setListaAutos] = useState(dataAutos);
-  const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState([]);
+
+  if (localStorage.getItem('listaAutos') === null) {
+    localStorage.setItem('listaAutos', JSON.stringify(dataAutos));
+  }
+
+
+  const [ListadeAutos, setListaAutos] = useState(JSON.parse(localStorage.getItem('listaAutos')));
+  const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState(JSON.parse(localStorage.getItem('cartofav')));
+
+  /*if (localStorage.getItem('cartofav') === null) {
+    const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState([]);
+  } else {
+    const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState(JSON.parse(localStorage.getItem('cartofav')));
+  }*/
 
   return (
     <div className="App">
@@ -49,7 +66,7 @@ function App() {
               cartofav={addcartofav} />
           </div>
           <div className="col-md-4">
-            <CreateAutos 
+            <CreateAutos
               fnNewAuto={addnewcar}
             />
             <ListFavoritos
