@@ -1,7 +1,7 @@
 let dataAutos =
 [
     {
-        "Id": "1",
+        "Id": 1,
         "Name": "Ford Mustang",
         "Year": "1964",
         "Origin": "USA",
@@ -18,7 +18,7 @@ let dataAutos =
         ]
     },
     {
-        "Id": "2",
+        "Id": 2,
         "Name": "Volkswagen Beetle",
         "Year": "1938",
         "Origin": "Germany",
@@ -35,7 +35,7 @@ let dataAutos =
         ]
     }
     ,{
-        "Id": "3",
+        "Id": 3,
         "Name": "Porsche 911",
         "Year": "1963",
         "Origin": "Germany",

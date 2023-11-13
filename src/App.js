@@ -4,7 +4,8 @@ import Saludo from './components/Saludo';
 import Navegacion from './components/Navegacion';
 import ListaAutos from './components/ListaAutos';
 import dataAutos from './data/autos';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import ListFavoritos from './components/ListFavoritos';
 import CreateAutos from './components/FormAutos';
 
@@ -34,26 +35,47 @@ function App() {
     setListadeAutosfavoritos(JSON.parse(localStorage.getItem('cartofav')));
   }
 
-  function addnewcar(Elemento) {
-    let tempListAutos = [...ListadeAutos];
-    tempListAutos.push(Elemento);
-    localStorage.setItem('listaAutos', JSON.stringify(tempListAutos));
+  async function addnewcar(Elemento) {
+    try {
+      // Realiza una solicitud POST al servidor con los datos del nuevo Auto
+      const response = await Axios.post('http://localhost:4000/api/autos', Elemento);
+
+      // Actualiza las tarjetas
+      console.log('Producto creado exitosamente:', response.data);
+      
+      Axios.get('http://localhost:4000/api/autos')
+        .then((response) => {
+          setListaAutos(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+
+
+    } catch (error) {
+      // Maneja errores, por ejemplo, muestra un mensaje de error
+      console.error('Error al crear el producto:', error);
+    }
   }
 
 
-  if (localStorage.getItem('listaAutos') === null) {
-    localStorage.setItem('listaAutos', JSON.stringify(dataAutos));
-  }
 
 
-  const [ListadeAutos, setListaAutos] = useState(JSON.parse(localStorage.getItem('listaAutos')));
+
+  const [ListadeAutos, setListaAutos] = useState([]);
   const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState(JSON.parse(localStorage.getItem('cartofav')));
 
-  /*if (localStorage.getItem('cartofav') === null) {
-    const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState([]);
-  } else {
-    const [ListadeAutosfavoritos, setListadeAutosfavoritos] = useState(JSON.parse(localStorage.getItem('cartofav')));
-  }*/
+  useEffect(() => {
+    Axios.get('http://localhost:4000/api/autos')
+      .then((response) => {
+        setListaAutos(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+
 
   return (
     <div className="App">
